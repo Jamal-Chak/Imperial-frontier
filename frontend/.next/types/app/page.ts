@@ -1,4 +1,4 @@
-// File: C:\Users\Administrator\imperial-frontier\frontend\app\page.tsx
+// File: C:\Users\Tessl\Documents\GitHub\Imperial-frontier\frontend\app\page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

@@ -1,8 +1,9 @@
 {
-  "/page": "app/page.js",
-  "/investment/page": "app/investment/page.js",
-  "/about/page": "app/about/page.js",
+  "/_not-found": "app/_not-found.js",
+  "/api/interest/route": "app/api/interest/route.js",
   "/contact/page": "app/contact/page.js",
+  "/about/page": "app/about/page.js",
+  "/investment/page": "app/investment/page.js",
   "/prospectus/page": "app/prospectus/page.js",
-  "/api/interest/route": "app/api/interest/route.js"
+  "/page": "app/page.js"
 }

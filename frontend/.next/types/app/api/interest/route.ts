@@ -1,4 +1,4 @@
-// File: C:\Users\Administrator\imperial-frontier\frontend\app\api\interest\route.ts
+// File: C:\Users\Tessl\Documents\GitHub\Imperial-frontier\frontend\app\api\interest\route.ts
 import * as entry from '../../../../../app/api/interest/route.js'
 import type { NextRequest } from 'next/server.js'
 
