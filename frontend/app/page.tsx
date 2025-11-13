@@ -7,7 +7,7 @@ export default function Home() {
   const router = useRouter()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-950 pt-16 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-950 pt-16 relative overflow-visible">
       {/* Hero Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,215,0,0.15),transparent_70%)] pointer-events-none"></div>
 
@@ -63,9 +63,9 @@ export default function Home() {
             className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8"
           >
             {[
-              { value: "76.8%", label: "Projected Annual ROI" },
-              { value: "$3.84M", label: "Monthly Revenue" },
-              { value: "10+", label: "Years Mine Life" },
+              { value: '76.8%', label: 'Projected Annual ROI' },
+              { value: '$3.84M', label: 'Monthly Revenue' },
+              { value: '10+', label: 'Years Mine Life' },
             ].map((stat, index) => (
               <div
                 key={index}
@@ -80,6 +80,18 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Optional subtle shimmer overlay */}
+      <motion.div
+        className="absolute top-0 left-0 w-full h-16 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.15 }}
+        transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse' }}
+        style={{
+          background:
+            'linear-gradient(90deg, rgba(255,215,0,0.15) 0%, rgba(255,255,255,0.05) 50%, rgba(255,215,0,0.15) 100%)',
+        }}
+      />
     </div>
   )
 }
