@@ -2,13 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   
-  // Output configuration
-  output: 'standalone',
-  
-  // Image optimization
+  // Image optimization - unoptimized for static export
   images: {
     domains: [],
-    unoptimized: false,
+    unoptimized: true,
   },
   
   // Environment variables that should be available on the client side

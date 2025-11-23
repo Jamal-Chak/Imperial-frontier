@@ -2,278 +2,256 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-
-// Define the investment range enum to match backend
-enum InvestmentRange {
-  TIER_1 = "$1M - $2M",
-  TIER_2 = "$2M - $3M", 
-  TIER_3 = "$3M - $5M",
-  TIER_4 = "$5M+"
-}
+import Head from 'next/head'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
-    phone: '',
-    investment_range: InvestmentRange.TIER_1,
+    investmentTier: '',
     message: ''
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus('idle')
-
-    try {
-      const response = await fetch('http://localhost:8000/api/v1/investors/inquiries', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company || undefined, // Send as undefined if empty
-          phone: formData.phone || undefined,
-          investment_range: formData.investment_range,
-          message: formData.message || undefined
-        })
-      })
-      
-      if (response.ok) {
-        const result = await response.json()
-        console.log('Submission successful:', result)
-        setSubmitStatus('success')
-        setFormData({
-          name: '',
-          email: '',
-          company: '',
-          phone: '',
-          investment_range: InvestmentRange.TIER_1,
-          message: ''
-        })
-      } else {
-        const errorData = await response.json()
-        console.error('Submission failed:', errorData)
-        setSubmitStatus('error')
-      }
-    } catch (error) {
-      console.error('Network error:', error)
-      setSubmitStatus('error')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
+    // Handle form submission here
+    console.log('Form submitted:', formData)
+    alert('Thank you for your interest! We will contact you soon.')
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black pt-16">
-      {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="text-gold-500">CONTACT</span>
-              <br />
-              <span className="text-white">US</span>
-            </h1>
-            <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
-              Ready to invest in the future of gold mining? Get in touch with our team to discuss investment opportunities.
-            </p>
-          </motion.div>
+    <>
+      <Head>
+        <title>Contact Imperial Frontier - Investment & Partnership Inquiries</title>
+        <meta name="description" content="Contact Imperial Frontier Pvt Ltd for investment opportunities, partnerships, and business inquiries. Zimbabwean-registered enterprise building Africa's future." />
+      </Head>
 
-          {/* Status Messages */}
-          {submitStatus === 'success' && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-green-600 text-white p-4 rounded-lg mb-6 text-center"
-            >
-              ✅ Thank you for your interest! Our team will contact you within 24 hours.
-            </motion.div>
-          )}
-
-          {submitStatus === 'error' && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-red-600 text-white p-4 rounded-lg mb-6 text-center"
-            >
-              ❌ There was an error submitting your form. Please try again or contact us directly.
-            </motion.div>
-          )}
-
-          <div className="grid lg:grid-cols-2 gap-12 mt-8">
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="bg-white/5 backdrop-blur-md rounded-xl p-8 border border-white/10"
-            >
-              <h3 className="text-2xl font-bold text-gold-500 mb-6">Send us a Message</h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-gray-300 mb-2">Full Name *</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-gold-500 focus:outline-none transition-colors"
-                    placeholder="Your full name"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-gray-300 mb-2">Email Address *</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-gold-500 focus:outline-none transition-colors"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-gray-300 mb-2">Company</label>
-                    <input
-                      type="text"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-gold-500 focus:outline-none transition-colors"
-                      placeholder="Your company"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-gray-300 mb-2">Phone</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-gold-500 focus:outline-none transition-colors"
-                      placeholder="Your phone number"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-gray-300 mb-2">Investment Range *</label>
-                  <select
-                    name="investment_range"
-                    value={formData.investment_range}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-gold-500 focus:outline-none transition-colors"
-                  >
-                    <option value={InvestmentRange.TIER_1}>$1M - $2M</option>
-                    <option value={InvestmentRange.TIER_2}>$2M - $3M</option>
-                    <option value={InvestmentRange.TIER_3}>$3M - $5M</option>
-                    <option value={InvestmentRange.TIER_4}>$5M+</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-gray-300 mb-2">Message *</label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={4}
-                    className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-gold-500 focus:outline-none transition-colors"
-                    placeholder="Tell us about your investment interests and requirements..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-gold-500 text-black py-4 rounded-lg font-semibold text-lg hover:bg-gold-400 disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors"
-                >
-                  {isSubmitting ? 'Submitting...' : 'Send Message'}
-                </button>
-              </form>
-            </motion.div>
-
-            {/* Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="space-y-8"
-            >
-              <div className="bg-white/5 backdrop-blur-md rounded-xl p-8 border border-white/10">
-                <h3 className="text-2xl font-bold text-gold-500 mb-6">Get in Touch</h3>
-                
-                <div className="space-y-4">
-                  <div className="flex items-center">
-                    <div className="text-gold-500 mr-4">📧</div>
-                    <div>
-                      <p className="text-gray-300">investments@imperialfrontier.com</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center">
-                    <div className="text-gold-500 mr-4">📞</div>
-                    <div>
-                      <p className="text-gray-300">+263 24 123 4567</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center">
-                    <div className="text-gold-500 mr-4">📍</div>
-                    <div>
-                      <p className="text-gray-300">Mashonaland Central, Zimbabwe</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white/5 backdrop-blur-md rounded-xl p-8 border border-white/10">
-                <h3 className="text-2xl font-bold text-gold-500 mb-4">Investment Inquiries</h3>
-                <p className="text-gray-300 mb-4">
-                  For serious investment inquiries ($1M+), please contact our dedicated investment team for personalized consultation.
+      <div className="min-h-screen relative pt-16">
+        {/* Background Image with Glass Effect */}
+        <div 
+          className="fixed inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/images/Zimbabwe_Activity_BungeeJumping.jpg')",
+            filter: 'blur(1px) brightness(0.6)',
+            zIndex: 0
+          }}
+        />
+        {/* Glass Effect Overlay with Dark Forest Green / Deep Emerald Black */}
+        <div className="fixed inset-0 backdrop-blur-sm bg-gradient-to-b from-[#0D2617]/30 via-[#04140B]/40 to-[#04140B]/60" style={{ zIndex: 1 }} />
+        
+        {/* Main Content */}
+        <div className="relative z-10">
+          {/* Hero Section */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center"
+              >
+                <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                  <span className="text-yellow-400">CONTACT</span>
+                  <br />
+                  <span className="text-white">IMPERIAL FRONTIER</span>
+                </h1>
+                <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                  Ready to be part of Africa's transformation? Connect with us for investment opportunities, 
+                  partnerships, and strategic ventures.
                 </p>
-                <button className="bg-gold-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-gold-400 transition-colors">
-                  Schedule a Call
-                </button>
-              </div>
+              </motion.div>
 
-              {/* Response Time Info */}
-              <div className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10">
-                <h4 className="text-lg font-bold text-gold-500 mb-2">What happens next?</h4>
-                <ul className="text-gray-300 space-y-2 text-sm">
-                  <li>• We'll review your inquiry within 24 hours</li>
-                  <li>• Our investment team will contact you directly</li>
-                  <li>• Receive detailed project documentation</li>
-                  <li>• Schedule a site visit if interested</li>
-                </ul>
+              <div className="grid lg:grid-cols-2 gap-16 mt-16">
+                {/* Contact Information */}
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="space-y-8"
+                >
+                  <div className="solid-panel rounded-xl p-8">
+                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-yellow-400/50 pb-3">
+                      Business Information
+                    </h2>
+                    
+                    <div className="space-y-6">
+                      <div className="flex items-start">
+                        <div className="text-yellow-400 text-2xl mr-4 mt-1">📍</div>
+                        <div>
+                          <h3 className="text-white font-semibold mb-1">Registered Office</h3>
+                          <p className="text-gray-300">
+                            6 Muchecheni Street, Mufakose<br />
+                            Harare, Zimbabwe
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start">
+                        <div className="text-yellow-400 text-2xl mr-4 mt-1">📧</div>
+                        <div>
+                          <h3 className="text-white font-semibold mb-1">Email Contact</h3>
+                          <p className="text-gray-300">
+                            Chinheyapetronella@gmail.com
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start">
+                        <div className="text-yellow-400 text-2xl mr-4 mt-1">🏢</div>
+                        <div>
+                          <h3 className="text-white font-semibold mb-1">Company Registration</h3>
+                          <p className="text-gray-300">
+                            Entity Number: 64094A02102025<br />
+                            Registered under Companies Act of Zimbabwe<br />
+                            Established: 2025
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start">
+                        <div className="text-yellow-400 text-2xl mr-4 mt-1">⛏️</div>
+                        <div>
+                          <h3 className="text-white font-semibold mb-1">Core Operations</h3>
+                          <p className="text-gray-300">
+                            Mining (500+ hectares) • Infrastructure<br />
+                            Agribusiness • Property Development
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="solid-panel rounded-xl p-8">
+                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-yellow-400/50 pb-3">
+                      Leadership Team
+                    </h2>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <h3 className="text-yellow-400 font-semibold">Co-Founders</h3>
+                        <p className="text-gray-300 text-sm">Mukondeleli Tshikalange</p>
+                        <p className="text-gray-300 text-sm">Serbiot Pardon Munetsi</p>
+                      </div>
+                      <div>
+                        <h3 className="text-yellow-400 font-semibold">Strategic Leadership</h3>
+                        <p className="text-gray-300 text-sm">Matthew Munava</p>
+                        <p className="text-gray-300 text-sm">Taurai Chinheya (Secretary General)</p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Contact Form */}
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="solid-panel rounded-xl p-8"
+                >
+                  <h2 className="text-2xl font-bold text-white mb-6 border-b border-yellow-400/50 pb-3">
+                    Investment & Partnership Inquiry
+                  </h2>
+                  
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-white font-medium mb-2">Full Name *</label>
+                        <input
+                          type="text"
+                          name="name"
+                          required
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 bg-[#04140B] border border-yellow-400/30 rounded-lg text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none transition-colors"
+                          placeholder="Your full name"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-white font-medium mb-2">Email Address *</label>
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 bg-[#04140B] border border-yellow-400/30 rounded-lg text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none transition-colors"
+                          placeholder="your.email@example.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-white font-medium mb-2">Company/Organization</label>
+                        <input
+                          type="text"
+                          name="company"
+                          value={formData.company}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 bg-[#04140B] border border-yellow-400/30 rounded-lg text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none transition-colors"
+                          placeholder="Your company name"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-white font-medium mb-2">Investment Interest</label>
+                        <select
+                          name="investmentTier"
+                          value={formData.investmentTier}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 bg-[#04140B] border border-yellow-400/30 rounded-lg text-white focus:border-yellow-400 focus:outline-none transition-colors"
+                        >
+                          <option value="" className="bg-gray-800">Select investment tier</option>
+                          <option value="strategic" className="bg-gray-800">Strategic Tier I ($1M - $2M)</option>
+                          <option value="venture" className="bg-gray-800">Venture Tier II ($2M - $3M)</option>
+                          <option value="sovereign" className="bg-gray-800">Sovereign Tier III ($3M - $5M+)</option>
+                          <option value="partnership" className="bg-gray-800">Strategic Partnership</option>
+                          <option value="consultation" className="bg-gray-800">Consultation Only</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-white font-medium mb-2">Message *</label>
+                      <textarea
+                        name="message"
+                        required
+                        rows={4}
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-[#04140B] border border-yellow-400/30 rounded-lg text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none transition-colors resize-none"
+                        placeholder="Please describe your investment interest, questions, or partnership opportunities..."
+                      />
+                    </div>
+
+                    <motion.button
+                      type="submit"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="w-full bg-yellow-400 text-white py-4 rounded-lg font-semibold text-lg hover:bg-yellow-600 transition-all shadow-lg"
+                      style={{ color: '#04140B' }}
+                    >
+                      Send Inquiry
+                    </motion.button>
+                  </form>
+
+                  <div className="mt-6 p-4 bg-yellow-400/10 rounded-lg border border-yellow-400/30">
+                    <p className="text-sm text-gray-300">
+                      <strong className="text-yellow-400">Note:</strong> All inquiries are reviewed by our founding circle. 
+                      We respond within 48 hours to qualified investment opportunities and strategic partnerships.
+                    </p>
+                  </div>
+                </motion.div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </section>
         </div>
-      </section>
-    </div>
+      </div>
+    </>
   )
 }

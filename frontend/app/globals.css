@@ -2,72 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ROOT THEME COLORS (DARK FOREST GREEN / DEEP EMERALD BLACK) */
 :root {
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 15, 23, 42;
-  --background-end-rgb: 2, 6, 23;
+  --background-start: #0D2617; /* Dark Forest Green */
+  --background-end: #04140B;   /* Deep Emerald Black */
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+* { box-sizing: border-box; padding: 0; margin: 0; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #04140B; /* Deep Emerald Black - fallback for pages without background image */
   font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #04140B; }
+::-webkit-scrollbar-thumb { background: #0D2617; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #1A4D2E; }
+
+/* Solid panels (no glass effect) */
+.solid-panel {
+  background: rgba(13, 38, 23, 0.8); /* Dark Forest Green with opacity */
+  border: 1px solid rgba(26, 77, 46, 0.3);
+  border-radius: 0.75rem;
 }
 
-::-webkit-scrollbar-track {
-  background: #0f172a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #f59e0b;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #d97706;
-}
-
-/* Glass morphism effect */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Gradient text */
+/* Accent gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #fde68a 100%);
+  background: linear-gradient(135deg, #C9C63B, #A8A328);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Hover lift effect */
-.hover-lift {
-  transition: all 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
+/* hover lift */
+.hover-lift { transition: all 0.32s cubic-bezier(.2,.9,.2,1); }
+.hover-lift:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0,0,0,0.55); }

@@ -9,19 +9,3 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-
-[functions]
-  directory = "netlify/functions"
-
-# Redirect all API requests (if needed for backend)
-[[redirects]]
-  from = "/api/*"
-  to = "https://your-backend-url.com/api/:splat"
-  status = 200
-  force = true
-
-# Next.js catch-all for client-side routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200

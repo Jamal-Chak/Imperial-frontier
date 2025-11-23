@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export default function Prospectus() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-950 pt-24 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto text-center">
         {/* Header */}
         <motion.h1
