@@ -48,3 +48,4 @@ The Imperial Frontier website now consistently uses Dark Forest Green / Deep Eme
 4. **Professional Aesthetic**: Rich, deep colors that convey strength and sophistication
 
 The website now maintains the requested Dark Forest Green / Deep Emerald Black theme while preserving all functionality and design elements.
+https://github.com/Jamal-Chak/Imperial-frontier.git

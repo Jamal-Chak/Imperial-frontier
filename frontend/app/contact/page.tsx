@@ -36,7 +36,7 @@ export default function Contact() {
 
       <div className="min-h-screen relative pt-16">
         {/* Background Image with Glass Effect */}
-        <div 
+        <div
           className="fixed inset-0 bg-cover bg-center"
           style={{
             backgroundImage: "url('/images/Zimbabwe_Activity_BungeeJumping.jpg')",
@@ -46,7 +46,7 @@ export default function Contact() {
         />
         {/* Glass Effect Overlay with Dark Forest Green / Deep Emerald Black */}
         <div className="fixed inset-0 backdrop-blur-sm bg-gradient-to-b from-[#0D2617]/30 via-[#04140B]/40 to-[#04140B]/60" style={{ zIndex: 1 }} />
-        
+
         {/* Main Content */}
         <div className="relative z-10">
           {/* Hero Section */}
@@ -63,7 +63,7 @@ export default function Contact() {
                   <span className="text-white">IMPERIAL FRONTIER</span>
                 </h1>
                 <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
-                  Ready to be part of Africa's transformation? Connect with us for investment opportunities, 
+                  Ready to be part of Africa's transformation? Connect with us for investment opportunities,
                   partnerships, and strategic ventures.
                 </p>
               </motion.div>
@@ -80,7 +80,7 @@ export default function Contact() {
                     <h2 className="text-2xl font-bold text-white mb-6 border-b border-yellow-400/50 pb-3">
                       Business Information
                     </h2>
-                    
+
                     <div className="space-y-6">
                       <div className="flex items-start">
                         <div className="text-yellow-400 text-2xl mr-4 mt-1">📍</div>
@@ -98,7 +98,7 @@ export default function Contact() {
                         <div>
                           <h3 className="text-white font-semibold mb-1">Email Contact</h3>
                           <p className="text-gray-300">
-                            Chinheyapetronella@gmail.com
+                            info@imperialfrontier.africa
                           </p>
                         </div>
                       </div>
@@ -120,7 +120,7 @@ export default function Contact() {
                         <div>
                           <h3 className="text-white font-semibold mb-1">Core Operations</h3>
                           <p className="text-gray-300">
-                            Mining (500+ hectares) • Infrastructure<br />
+                            Mining (100 000 + hectares) • Infrastructure<br />
                             Agribusiness • Property Development
                           </p>
                         </div>
@@ -157,7 +157,7 @@ export default function Contact() {
                   <h2 className="text-2xl font-bold text-white mb-6 border-b border-yellow-400/50 pb-3">
                     Investment & Partnership Inquiry
                   </h2>
-                  
+
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
@@ -242,7 +242,7 @@ export default function Contact() {
 
                   <div className="mt-6 p-4 bg-yellow-400/10 rounded-lg border border-yellow-400/30">
                     <p className="text-sm text-gray-300">
-                      <strong className="text-yellow-400">Note:</strong> All inquiries are reviewed by our founding circle. 
+                      <strong className="text-yellow-400">Note:</strong> All inquiries are reviewed by our founding circle.
                       We respond within 48 hours to qualified investment opportunities and strategic partnerships.
                     </p>
                   </div>

@@ -7,11 +7,11 @@ export default function About() {
   // Key data points extracted from the Business Profile document
   const missionText = "To facilitate and co-create transformative ventures that empower African ownership, generate employment, and build lasting infrastructure. Every project is designed to catalyze regional integration, industrial upliftment, and generational legacy."
   const overviewText = "Imperial Frontier Pvt Ltd is a Zimbabwean-registered enterprise established in 2025. We are building Africa's future through high-impact ventures in mining, infrastructure, agribusiness, and property development."
-  
+
   const facts = [
     {
       title: "Core Sector: Mining Operations",
-      description: "Our mining interests span over 500 hectares across multiple provinces in Zimbabwe, primarily targeting gold, copper, and nickel deposits through strategic JV models.",
+      description: "Our mining interests span over 100 000 + hectares across multiple provinces in Zimbabwe, primarily targeting gold, copper, lithium, coal, and nickel deposits through strategic JV models.",
       icon: "⛏️"
     },
     {
@@ -58,7 +58,7 @@ export default function About() {
 
       <div className="min-h-screen pt-16 relative">
         {/* Background Image with Glass Effect */}
-        <div 
+        <div
           className="fixed inset-0 bg-cover bg-center"
           style={{
             backgroundImage: "url('/images/p0czbqyj.jpg')",
@@ -68,7 +68,7 @@ export default function About() {
         />
         {/* Glass Effect Overlay with Dark Forest Green / Deep Emerald Black */}
         <div className="fixed inset-0 backdrop-blur-sm bg-gradient-to-b from-[#0D2617]/30 via-[#04140B]/40 to-[#04140B]/60" style={{ zIndex: 1 }} />
-        
+
         {/* Hero Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-7xl mx-auto">
@@ -107,8 +107,8 @@ export default function About() {
               >
                 <h3 className="text-2xl font-bold text-yellow-400 mb-4">Strategic Sectors</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  We operate as strategic facilitators across four primary industries: <strong>Mining</strong> (strategic minerals, beneficiation, export pathways), 
-                  <strong> Infrastructure</strong> (rail corridors, roads, energy grids), <strong>Agribusiness</strong> (climate-smart farming, processing hubs), 
+                  We operate as strategic facilitators across four primary industries: <strong>Mining</strong> (strategic minerals, beneficiation, export pathways),
+                  <strong> Infrastructure</strong> (rail corridors, roads, energy grids), <strong>Agribusiness</strong> (climate-smart farming, processing hubs),
                   and <strong>Property</strong> (affordable housing, industrial parks, new city development).
                 </p>
               </motion.div>
@@ -196,10 +196,10 @@ export default function About() {
               <div className="solid-panel rounded-xl p-8 max-w-4xl mx-auto">
                 <h2 className="text-3xl font-bold text-white mb-6">Official Business Profile</h2>
                 <p className="text-gray-300 mb-6 text-lg">
-                  For a detailed review of our corporate structure, strategic approach, and full project pipeline, 
+                  For a detailed review of our corporate structure, strategic approach, and full project pipeline,
                   please download the official Imperial Frontier Business Profile document.
                 </p>
-                <a 
+                <a
                   href="/imperial-frontier-business-profile.pdf"
                   download
                   className="inline-flex items-center bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition-colors duration-300 text-lg"

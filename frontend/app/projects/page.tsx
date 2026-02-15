@@ -7,12 +7,12 @@ import Head from 'next/head'
 const projectData = {
   name: '(TBD) Multiple Provinces Project',
   location: 'Multiple Provinces, Zimbabwe',
-  minerals: ['Gold', 'Copper', 'Nickel'],
+  minerals: ['Gold', 'Copper', 'Lithium', 'Coal', 'Nickel'],
   phase: 'Exploration & Feasibility',
-  capacity: '20,000 Hectares Secured',
+  capacity: '100 000 Hectares secured',
   note: 'Project names and capacities will be updated as investor engagements and feasibility studies progress.',
   valueChain: [
-    'Primary Operations: Gold, copper, and nickel extraction (facilitated through JV models)',
+    'Primary Operations: Gold, copper, lithium, coal, and nickel extraction (facilitated through JV models)',
     'Value Chain Services: Stone processing, logistics, and mineral marketing',
     'Consulting Services: Geological exploration, feasibility studies, and strategic facilitation',
   ]
@@ -21,7 +21,7 @@ const projectData = {
 // Strategic Partnerships from PDF
 const partnerships = [
   'Mine owners for JV structuring',
-  'Equipment suppliers for scalable operations', 
+  'Equipment suppliers for scalable operations',
   'Processing plants for beneficiation and export',
   'Transport/logistics firms for corridor integration',
   'Legal and financial advisors within our founding circle'
@@ -42,12 +42,12 @@ export default function Projects() {
     <>
       <Head>
         <title>Imperial Frontier - Project Operations & Status</title>
-        <meta name="description" content="Real-time status and operational details for Imperial Frontier's core mining projects in Zimbabwe, focusing on Gold, Copper, and Nickel extraction." />
+        <meta name="description" content="Real-time status and operational details for Imperial Frontier's core mining projects in Zimbabwe, focusing on Gold, Copper, Lithium, Coal, and Nickel extraction." />
       </Head>
 
       <div className="min-h-screen pt-16 relative">
         {/* Background Image with Glass Effect */}
-        <div 
+        <div
           className="fixed inset-0 bg-cover bg-center"
           style={{
             backgroundImage: "url('/images/DGZ-Plant.jpg')",
@@ -57,7 +57,7 @@ export default function Projects() {
         />
         {/* Glass Effect Overlay with Dark Forest Green / Deep Emerald Black */}
         <div className="fixed inset-0 backdrop-blur-sm bg-gradient-to-b from-[#0D2617]/30 via-[#04140B]/40 to-[#04140B]/60" style={{ zIndex: 1 }} />
-        
+
         {/* Hero Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-7xl mx-auto">
@@ -86,14 +86,14 @@ export default function Projects() {
               <h2 className="text-3xl font-bold text-white mb-8 border-b border-yellow-400/50 pb-3">
                 Current Project: {projectData.name}
               </h2>
-              
+
               <div className="grid md:grid-cols-4 gap-6 text-center">
                 {/* Data Card: Location */}
                 <div className="p-4 rounded-lg bg-[#04140B] border border-yellow-400/30">
                   <p className="text-sm text-gray-400">Location</p>
                   <p className="text-lg font-semibold text-white mt-1">{projectData.location}</p>
                 </div>
-                
+
                 {/* Data Card: Phase */}
                 <div className="p-4 rounded-lg bg-[#04140B] border border-yellow-400/30">
                   <p className="text-sm text-gray-400">Development Phase</p>
@@ -105,19 +105,19 @@ export default function Projects() {
                   <p className="text-sm text-gray-400">Target Minerals</p>
                   <p className="text-lg font-semibold text-white mt-1">{projectData.minerals.join(', ')}</p>
                 </div>
-                
+
                 {/* Data Card: Capacity */}
                 <div className="p-4 rounded-lg bg-[#04140B] border border-yellow-400/30">
                   <p className="text-sm text-gray-400">Estimated Capacity</p>
                   <p className="text-lg font-semibold text-yellow-400 mt-1">{projectData.capacity}</p>
                 </div>
               </div>
-              
+
               {/* Feasibility Note */}
               <p className="text-sm text-gray-400 mt-8 text-center italic">
                 **Note:** {projectData.note}
               </p>
-              
+
             </motion.div>
 
             {/* Value Chain Services Section */}

@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className="min-h-screen pt-16 relative overflow-visible">
       {/* Background Image with Glass Effect */}
-      <div 
+      <div
         className="fixed inset-0 bg-cover bg-center"
         style={{
           backgroundImage: "url('/images/investment-5241253_1280.jpg')",
@@ -23,7 +23,7 @@ export default function Home() {
       />
       {/* Glass Effect Overlay */}
       <div className="fixed inset-0 backdrop-blur-sm bg-gradient-to-b from-green-900/30 via-[#04140B]/40 to-[#04140B]/60" style={{ zIndex: 1 }} />
-      
+
       {/* Hero Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -54,7 +54,7 @@ export default function Home() {
             <p className="text-xl md:text-2xl text-gray-300 mb-4 max-w-4xl mx-auto">
               Building Africa's future through high-impact ventures in mining, infrastructure, agribusiness, and property development.
             </p>
-            
+
             <p className="text-lg text-yellow-400 mb-10 max-w-3xl mx-auto font-medium">
               "Shifting Africa's narrative from dependency to dignity"
             </p>
@@ -90,7 +90,7 @@ export default function Home() {
             className="mt-24 grid grid-cols-1 md:grid-cols-4 gap-8"
           >
             {[
-              { value: '500+', label: 'Hectares Secured', subtitle: 'Mining Interests' },
+              { value: '100 000 +', label: 'Hectares Secured', subtitle: 'Mining Interests' },
               { value: '4', label: 'Core Sectors', subtitle: 'Mining • Infrastructure • Agribusiness • Property' },
               { value: '2025', label: 'Established', subtitle: 'Zimbabwean Registered' },
               { value: '∞', label: 'Vision', subtitle: 'Africa\'s Future' },
@@ -122,11 +122,11 @@ export default function Home() {
               {[
                 {
                   sector: 'Mining',
-                  description: 'Gold, copper, and nickel extraction across 500+ hectares',
+                  description: 'Gold, copper, lithium, coal, and nickel extraction across 100 000 + hectares',
                   icon: '⛏️'
                 },
                 {
-                  sector: 'Infrastructure', 
+                  sector: 'Infrastructure',
                   description: 'Rail corridors, roads, water systems, energy grids',
                   icon: '🏗️'
                 },
@@ -160,7 +160,7 @@ export default function Home() {
             <div className="solid-panel rounded-xl p-10 max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-white mb-6">Our Founding Vision</h2>
               <p className="text-xl text-gray-300 leading-relaxed mb-6">
-                We exist to shift Africa's narrative from dependency to dignity. Our mission is to facilitate and co-create 
+                We exist to shift Africa's narrative from dependency to dignity. Our mission is to facilitate and co-create
                 transformative ventures that empower African ownership, generate employment, and build lasting infrastructure.
               </p>
               <p className="text-lg text-yellow-400 font-medium">

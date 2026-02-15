@@ -20,25 +20,26 @@ export default function GoldPriceTicker() {
 
   const fetchGoldPrice = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/v1/gold/price')
-      
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+      const response = await fetch(`${apiUrl}/api/v1/gold/price`)
+
       if (!response.ok) {
         throw new Error(`Server Error: Failed to fetch gold price (Status: ${response.status})`)
       }
-      
+
       const data: GoldPriceData = await response.json()
       setGoldPrice(data)
-      setError(null) 
+      setError(null)
     } catch (err) {
       console.error('Gold price fetch error:', err)
-      
+
       // 👇 ENHANCED ERROR HANDLING: Display last price if available
       if (goldPrice) {
-         // Show a "data stale" warning if a price was previously loaded
-         setError("⚠️ Data is not real-time. Our live feed is temporarily down. Please refresh.");
+        // Show a "data stale" warning if a price was previously loaded
+        setError("⚠️ Data is not real-time. Our live feed is temporarily down. Please refresh.");
       } else {
-         // Show the full connection refused message if no price ever loaded
-         setError("ℹ️ Our live data feed is temporarily experiencing an issue. We're working to restore real-time pricing immediately. Please try refreshing.")
+        // Show the full connection refused message if no price ever loaded
+        setError("ℹ️ Our live data feed is temporarily experiencing an issue. We're working to restore real-time pricing immediately. Please try refreshing.")
       }
       // Note: We intentionally DO NOT setGoldPrice(null) here, preserving the last known data.
     } finally {
@@ -48,7 +49,7 @@ export default function GoldPriceTicker() {
 
   useEffect(() => {
     fetchGoldPrice()
-    const interval = setInterval(fetchGoldPrice, 30000) 
+    const interval = setInterval(fetchGoldPrice, 30000)
     return () => clearInterval(interval)
   }, [])
 
@@ -146,7 +147,7 @@ export default function GoldPriceTicker() {
               <span className="text-xs text-green-100 hidden sm:block">
                 Updated: {formatTime(goldPrice.last_updated)}
               </span>
-              <button 
+              <button
                 onClick={fetchGoldPrice}
                 // 🟢 Use darker green for the refresh button
                 className="text-xs bg-yellow-600 hover:bg-yellow-500 px-2 py-1 rounded transition-colors"
